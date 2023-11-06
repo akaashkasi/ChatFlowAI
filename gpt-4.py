@@ -29,10 +29,11 @@ class ChatApp:
     def __init__(self, ai_app):
         self.ai_app = ai_app
         self.chat_placeholder = st.empty()  # Create an empty placeholder to display chat history
+        if 'chat_history' not in st.session_state:
+            st.session_state['chat_history'] = [] #added chat history to be able to query conversations previously 
 
     def update_chat_history(self, role, message):
-        new_message = f"{role}: {message}\n"
-        st.session_state['chat_history_text'] += new_message  # Update the session state with the new message
+        st.session_state['chat_history'].append(f"{role}: {message}")
         self.chat_placeholder.text(st.session_state['chat_history_text'])  # Update the placeholder with the updated chat history
 
     def display(self):
@@ -60,10 +61,17 @@ class ChatApp:
 
         if st.button("Send"):
             self.update_chat_history("You", user_input)
-            prompt = f"{user_input}\nAnswer the user as best as possible"
+            conversation_history = '\n'.join(st.session_state['chat_history'])  # combine all chat history into one string
+            prompt = f"{conversation_history}\nGPT, answer the user as best as possible:"
             gpt_response = self.ai_app.get_response(prompt)
             if gpt_response:
                 self.update_chat_history("GPT", gpt_response)
+                self.display_chat_history()  # update displayed chat history
+    # Displayed Chat History
+    def display_chat_history(self):
+        chat_text = '\n'.join(st.session_state['chat_history'])
+        st.session_state['chat_history_text'] = chat_text
+        self.chat_placeholder.text(chat_text)
 
 if __name__ == "__main__":
     api_key = os.getenv("OPENAI_API_KEY")
