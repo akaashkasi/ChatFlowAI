@@ -24,5 +24,20 @@ def apply_styles():
             padding-top: 10px; /* Space above the chat text area */
             padding-bottom: 10px; /* Space below the chat text area */
         }
+        /* Add hover effect to buttons */
+        .stButton > button:hover {
+            background-color: #6fa3f7;
+        }
+
+        /* Style the send button more distinctively */
+        .stButton > button {
+            font-weight: bold;
+            letter-spacing: 0.1em;
+        }
+
+        /* Adjust the width of the text input */
+        .stTextInput > div > div > input {
+            width: 80%;
+        }
         </style>
     """, unsafe_allow_html=True)
