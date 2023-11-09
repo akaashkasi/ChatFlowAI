@@ -1,6 +1,7 @@
-# Simple OpenAI-Conversation
+# ChatFlowAI
 
-This repository hosts an interactive chat application leveraging Streamlit for UI and OpenAI's GPT-4 for conversation.
+This repository is home to ChatFlowAI: an interactive chat application that harnesses the power of Streamlit for its user interface and the sophistication of OpenAI's GPT-4 for engaging dialogues. 
+The AI is designed not only to offer conversational guidance but also to retain a memory of all previous interactions, ensuring a cohesive and context-aware conversational experience.
 
 ## Added the following implementations so far:
 - Interactive chat interface using Streamlit
