@@ -23,6 +23,8 @@ class ChatApp:
         user_input = st.text_input("You:", key='user_input')
         if st.button("Send"):
             self.update_chat_history("You", user_input)
-            gpt_response = self.ai_app.get_response(user_input)
+            # Pass the entire chat history for context when generating the response
+            chat_history = st.session_state.get('chat_history', [])
+            gpt_response = self.ai_app.get_response(user_input, chat_history)
             if gpt_response:
                 self.update_chat_history("GPT", gpt_response)
