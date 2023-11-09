@@ -1,3 +1,8 @@
 .vscode/
 .env
 myenv
+.cosine
+__pycache__/
+newenv/
+venv/
+source/
